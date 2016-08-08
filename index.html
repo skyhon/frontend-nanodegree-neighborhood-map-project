@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Project 5 - Neighborhood Map Project</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+	<!-- header -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <a class="navbar-brand" href="#">Neighborhood Map Project - Hayward, CA</a>
+			</div>
+	</nav>
+	<!-- container body -->
+	<div id="container-body" class="container-fluid">
+		  <div class="row row-offcanvas row-offcanvas-left">
+			 <!-- sidemenu -->
+			 <div class="col-sm-3 col-md-2 sidebar-offcanvas content" id="sidebar" role="navigation">
+				<form class="searchBox form-control" action="#">
+					<input placeholder="Search…" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+				</form>
+				<ul class="nav nav-sidebar" data-bind="template: {name:'place', foreach:places}, click: activateMarker">
+				</ul>          
+			</div>
+			<div class="col-sm-9 col-md-10 main">
+				<!-- Neighborhood map container -->
+				<div id="map"></div>
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	<footer>
+	  <p class="pull-right">Developer: Steve Hon, Project: Neighborhood Map of Hayward, California</p>
+	</footer>
+	<!-- infowindow data (hidden) -->
+	<div id="infowindowData">
+		<div class="content" data-bind="attr: {'id': yelp.id}">
+		<!--<div class="content">-->
+			<h4 data-bind="text: location.name"></h4>
+				<p>Address: <br>
+					<span data-bind="text: location.formattedAddress.line1"></span><br>
+					<span data-bind="text: location.formattedAddress.line2"></span><br>
+					<span data-bind="text: yelp.phone"></span>
+				</p>
+				<div class="info">
+					<img data-bind="attr:{'src': yelp.locImgPath }">
+					<p>
+						<img data-bind="attr:{'src': yelp.ratingImgPath }">
+						<span class="rating" data-bind="text: yelp.rating"></span><br>
+						<div class="review" data-bind="text: yelp.review"></div>
+					</p>
+				</div>
+		</div>
+		<div class="error">
+			<h4>An AJAX error occured.</h4>
+			Status: <span data-bind="text: yelp.ajax.status"></span><br>
+			Ready State: <span data-bind="text: yelp.ajax.readyState"></span><br>
+			Detail: <span data-bind="text: yelp.ajax.detail"></span><br>
+		</div>
+		<p class="loading">
+			Loading...
+		</p>		
+	</div>
+	<!-- script references -->
+	<script data-proofer-ignore type="text/html" id="place">
+		<li>
+			<a href="#" data-bind="text: name"></a>
+		</li>
+	</script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>	
+	<script src="js/oauth-signature.min.js"></script>
+	<script src="js/places-in-hayward.js"></script>
+	<script src="js/knockout-3.4.0.min.js"></script>
+	<script src="js/js.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNqq51JtvvTSpM09Q6uYAi5pKZwTrNQvE&callback=initMap" async defer onerror="myErrorHandler()"></script>
+	</body>
+</html>
